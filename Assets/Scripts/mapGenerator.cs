@@ -9,31 +9,39 @@ public class mapGenerator : MonoBehaviour
     [SerializeField] Transform playerPosition;
     [SerializeField] NavMeshSurface2d Surface2D;
     GameObject currentMap = null;
-    [SerializeField] Transform mapParent; 
-    
+    [SerializeField] Transform mapParent;
+    GameObject _compareOldMap;
+
     // Start is called before the first frame update
     void Start()
     {
-       currentMap = Instantiate(mapTilesList[Random.Range(0, mapTilesList.Length - 1)], mapParent);
-        Surface2D.GetComponent<NavMeshSurface2d>().BuildNavMeshAsync();
+       
+        currentMap = Instantiate(mapTilesList[Random.Range(0, mapTilesList.Length - 1)], mapParent);
+        Surface2D.BuildNavMeshAsync();  // innitial buildas nav mesho
+        _compareOldMap = currentMap;
 
     }
 
     public void GenerateMap()
     {
-/*        foreach (Transform child in this.currentMap.transform)
-            GameObject.Destroy(child.gameObject);*/
 
-        
-        //Debug.Log(currentMap.gameObject.name);
-           //DestroyImmediate(this.currentMap.gameObject, true);
-           Destroy(currentMap);
+    Destroy(currentMap);  // pasalina mapa
+   
+        currentMap = Instantiate(mapTilesList[Random.Range(0, mapTilesList.Length - 1)], mapParent);  // mapas is array
 
-
-
-        currentMap = Instantiate(mapTilesList[Random.Range(0, mapTilesList.Length - 1)], mapParent);
-        Surface2D.GetComponent<NavMeshSurface2d>().BuildNavMeshAsync();
-        // Instantiate(mapTilesList[Random.Range(0, mapTilesList.Length-1)]);
     }
-  
+
+    private void Update()
+    {
+      if (currentMap != null &&  _compareOldMap != currentMap)
+        {
+            Debug.Log("Refreshinu NavMap");
+            Surface2D.UpdateNavMesh(Surface2D.navMeshData);
+            _compareOldMap = currentMap;
+        }    
+            
+
+
+
+    }
 }

@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 7435155619393856758, guid: 6ab48f9f80ca7a84c8748f2e37b4f6f0, type: 3}
   - {fileID: 6053556537186301318, guid: 61563069d905bd549bb599ec28f06ecb, type: 3}
   playerPosition: {fileID: 0}
+  Surface2D: {fileID: 0}
   mapParent: {fileID: 0}
 --- !u!1 &5717861195480061470
 GameObject:

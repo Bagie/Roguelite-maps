@@ -7,7 +7,11 @@ public class PortalEnter : MonoBehaviour
    
      private void OnTriggerEnter2D(Collider2D collision)
     {
-        mapGenerator mapGen = GetComponentInParent<mapGenerator>();
-        mapGen.GenerateMap();
+        if (collision.CompareTag("Player"))
+        {
+            mapGenerator mapGen = GetComponentInParent<mapGenerator>();
+            mapGen.GenerateMap();
+        }
+       
     }
 }
