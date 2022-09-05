@@ -13,12 +13,12 @@ public class CharacterController : MonoBehaviour
     Weapon_Parent weapon_Parent;
     private Vector2 pointerInput;
 
-   // [Tooltip("Health bar images")]
+    // [Tooltip("Health bar images")]
     [Header("Health bar images")]
 
     [SerializeField] Transform healtBarFront;
     [SerializeField] Transform healtBarBack;
-   
+
 
     [Space]
     [Header("Character attributes")]
@@ -43,7 +43,7 @@ public class CharacterController : MonoBehaviour
 
     void Start()
     {
-     
+
 
         if (currentHealth == 0)      // pirma kart paleidziant, jei nenustatyta Hp - sulygina su max
         { currentHealth = maxHealth; }
@@ -124,6 +124,10 @@ public class CharacterController : MonoBehaviour
         currentHealth -= _damage;
     }
 
+    public void HealthAdjustment(int _change)
+    {
+     currentHealth += _change;
+    }
 
 
 

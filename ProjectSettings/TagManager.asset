@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - Obstacle
   - Map
+  - PowerUps
   layers:
   - Default
   - TransparentFX

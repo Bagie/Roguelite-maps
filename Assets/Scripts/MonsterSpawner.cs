@@ -24,6 +24,13 @@ public class MonsterSpawner : MonoBehaviour
         
     }
 
+   
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, spawnRadius);
+    }
+
     private IEnumerator SpanwMonster()
     {
         for (int i = 0; i < monstersToSpawn; i++)
@@ -31,7 +38,7 @@ public class MonsterSpawner : MonoBehaviour
             if (monsterPrefabs != null)
             {
                 Vector3 pos = RandomCircle(centerOfSpawn, spawnRadius);
-                Instantiate(monsterPrefabs[0], pos, Quaternion.identity);
+                Instantiate(monsterPrefabs[0],  pos, Quaternion.identity, this.transform) ;
                 yield return new WaitForSeconds(delayToSpawn);
             }
         }
